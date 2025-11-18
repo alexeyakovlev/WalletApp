@@ -1,6 +1,6 @@
 package ru.yakovlev.walletapp.exception;
 
-public class WalletNotEnoughBalance extends RuntimeException {
+public class WalletNotEnoughBalance extends Exception {
     public WalletNotEnoughBalance(String message) {
         super(message);
     }

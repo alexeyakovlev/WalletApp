@@ -5,12 +5,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import ru.yakovlev.walletapp.dto.WalletDTORequest;
 import ru.yakovlev.walletapp.dto.WalletDTOResponse;
-import ru.yakovlev.walletapp.exception.InvalidRequestBody;
 import ru.yakovlev.walletapp.exception.WalletNotEnoughBalance;
 import ru.yakovlev.walletapp.exception.WalletNotFoundException;
 import ru.yakovlev.walletapp.service.WalletService;
 
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.UUID;
 
@@ -51,7 +49,7 @@ public class WalletController {
     @PutMapping("/wallet")
     @ResponseStatus(HttpStatus.OK)
     public WalletDTOResponse depositOrWithdrawal(@RequestBody @Valid WalletDTORequest walletDTO)
-            throws WalletNotFoundException, WalletNotEnoughBalance, InvalidRequestBody {
+            throws WalletNotFoundException, WalletNotEnoughBalance {
         return walletService.depositOrWithdraw(walletDTO);
     }
 }

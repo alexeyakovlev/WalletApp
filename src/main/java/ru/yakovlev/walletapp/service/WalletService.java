@@ -6,13 +6,11 @@ import ru.yakovlev.walletapp.dto.WalletDTORequest;
 import ru.yakovlev.walletapp.dto.WalletDTOResponse;
 import ru.yakovlev.walletapp.entity.OperationType;
 import ru.yakovlev.walletapp.entity.Wallet;
-import ru.yakovlev.walletapp.exception.InvalidRequestBody;
 import ru.yakovlev.walletapp.exception.WalletNotEnoughBalance;
 import ru.yakovlev.walletapp.exception.WalletNotFoundException;
 import ru.yakovlev.walletapp.repository.WalletRepository;
 import ru.yakovlev.walletapp.util.WalletMapper;
 
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -55,9 +53,10 @@ public class WalletService {
 
     @Transactional
     public WalletDTOResponse depositOrWithdraw(WalletDTORequest walletDTORequest)
-            throws WalletNotFoundException, WalletNotEnoughBalance, InvalidRequestBody {
+            throws WalletNotFoundException, WalletNotEnoughBalance {
         Wallet exsistWallet = walletRepository.findById(walletDTORequest.getId())
                 .orElseThrow(() -> new WalletNotFoundException("Wallet with id " + walletDTORequest.getId() + " not found"));
+
         if (walletDTORequest.getOperationType() == OperationType.DEPOSIT) {
             exsistWallet.setBalance(exsistWallet.getBalance().add(walletDTORequest.getAmount()));
         } else if (walletDTORequest.getOperationType() == OperationType.WITHDRAW) {

@@ -5,6 +5,7 @@ import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.Value;
 import ru.yakovlev.walletapp.entity.OperationType;
 
 import java.math.BigDecimal;
