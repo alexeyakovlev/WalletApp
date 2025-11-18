@@ -19,6 +19,7 @@ public class Wallet {
 
     @Id
     @GeneratedValue(strategy= GenerationType.UUID)
+    @Column(name = "wallet_id")
     private UUID id;
 
     @Column(name = "balance")

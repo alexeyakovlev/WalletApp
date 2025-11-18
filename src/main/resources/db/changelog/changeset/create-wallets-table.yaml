@@ -1,0 +1,20 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-wallet
+      author: Alexey Yakovlev
+      changes:
+        - createTable:
+            tableName: wallets
+            columns:
+              - column:
+                  name: wallet_id
+                  type: uuid
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: balance
+                  type: numeric
+                  constraints:
+                    nullable: false
+                  defaultValue: 0.00
